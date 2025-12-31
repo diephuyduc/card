@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,21 @@
   <!-- Lottie Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600;700&family=Merriweather:wght@300;400;700&family=Pacifico&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600;700&family=Merriweather:wght@300;400;700&family=Pacifico&display=swap');
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #66eab5 0%, #4ba258 50%, #f093fb 100%);
+      font-family: 'Be Vietnam Pro', 'Poppins', 'Segoe UI', Arial, sans-serif;
       overflow: hidden;
       position: relative;
     }
@@ -50,6 +52,7 @@
         opacity: 1;
         transform: scale(1);
       }
+
       100% {
         opacity: 0;
         transform: scale(1.1);
@@ -82,9 +85,17 @@
       border-radius: 50%;
     }
 
-    .code-dot.red { background: #ff5f56; }
-    .code-dot.yellow { background: #ffbd2e; }
-    .code-dot.green { background: #27c93f; }
+    .code-dot.red {
+      background: #ff5f56;
+    }
+
+    .code-dot.yellow {
+      background: #ffbd2e;
+    }
+
+    .code-dot.green {
+      background: #27c93f;
+    }
 
     .code-content {
       color: #d4d4d4;
@@ -92,6 +103,7 @@
       line-height: 1.8;
       min-height: 200px;
       position: relative;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', 'monospace';
     }
 
     .code-line {
@@ -116,17 +128,42 @@
     }
 
     @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
     }
 
     /* Syntax highlighting */
-    .keyword { color: #569cd6; }
-    .string { color: #ce9178; }
-    .function { color: #dcdcaa; }
-    .comment { color: #6a9955; }
-    .number { color: #b5cea8; }
-    .const { color: #4fc1ff; }
+    .keyword {
+      color: #569cd6;
+    }
+
+    .string {
+      color: #ce9178;
+    }
+
+    .function {
+      color: #dcdcaa;
+    }
+
+    .comment {
+      color: #6a9955;
+    }
+
+    .number {
+      color: #b5cea8;
+    }
+
+    .const {
+      color: #4fc1ff;
+    }
 
     /* Loading bar */
     .loading-bar-container {
@@ -145,9 +182,12 @@
     }
 
     @keyframes titleGlow {
-      0%, 100% {
+
+      0%,
+      100% {
         text-shadow: 0 0 10px #00ff00;
       }
+
       50% {
         text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
       }
@@ -176,13 +216,23 @@
     }
 
     @keyframes loadingProgress {
-      0% { width: 0%; }
-      100% { width: 100%; }
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 100%;
+      }
     }
 
     @keyframes shimmer {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 0%; }
+      0% {
+        background-position: 0% 0%;
+      }
+
+      100% {
+        background-position: 200% 0%;
+      }
     }
 
     .loading-percent {
@@ -209,9 +259,11 @@
         opacity: 0;
         transform: scale(0.5) rotate(-10deg);
       }
+
       50% {
         transform: scale(1.1) rotate(5deg);
       }
+
       100% {
         opacity: 1;
         transform: scale(1) rotate(0deg);
@@ -225,9 +277,12 @@
     }
 
     @keyframes successBounce {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.3);
       }
@@ -243,9 +298,12 @@
     }
 
     @keyframes successPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
@@ -273,6 +331,7 @@
       0% {
         background-position: 0 0, 0 0, 0 0;
       }
+
       100% {
         background-position: 250px 250px, -350px 350px, 300px -300px;
       }
@@ -299,6 +358,7 @@
       0% {
         background-position: 0 0, 0 0, 0 0;
       }
+
       100% {
         background-position: 200px 200px, -300px 300px, 250px -250px;
       }
@@ -328,6 +388,7 @@
         opacity: 0;
         transform: translateY(50px) scale(0.9);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -342,9 +403,12 @@
     }
 
     @keyframes gentleBounce {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0) scale(1);
       }
+
       50% {
         transform: translateY(-15px) scale(1.05);
       }
@@ -362,12 +426,16 @@
       animation: gradientShift 4s ease infinite;
       text-transform: none;
       letter-spacing: 2px;
+      font-family: 'Be Vietnam Pro', 'Poppins', 'Segoe UI', Arial, sans-serif;
     }
 
     @keyframes gradientShift {
-      0%, 100% {
+
+      0%,
+      100% {
         background-position: 0% 50%;
       }
+
       50% {
         background-position: 100% 50%;
       }
@@ -385,7 +453,7 @@
       font-size: 1em;
       color: #8B4513;
       margin-top: 25px;
-      font-family: 'Pacifico', 'Brush Script MT', cursive;
+      font-family: 'Be Vietnam Pro', 'Pacifico', 'Brush Script MT', cursive;
       font-style: italic;
       opacity: 0.9;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -422,9 +490,12 @@
     }
 
     @keyframes pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
@@ -445,10 +516,12 @@
         top: 20%;
         transform: rotate(-10deg);
       }
+
       50% {
         top: 50%;
         transform: rotate(0deg);
       }
+
       100% {
         left: 110%;
         top: 30%;
@@ -464,7 +537,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #26992276 0%, #5883b7 50%, #e2d4e4 100%);
       z-index: 999;
       justify-content: center;
       align-items: center;
@@ -567,9 +640,12 @@
     }
 
     @keyframes catHappy {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0) rotate(-2deg);
       }
+
       50% {
         transform: translateY(-15px) rotate(2deg);
       }
@@ -585,9 +661,12 @@
     }
 
     @keyframes cakeBounce {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0) scale(1);
       }
+
       50% {
         transform: translateY(-10px) scale(1.02);
       }
@@ -618,12 +697,16 @@
     }
 
     @keyframes candleShake {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(0.98) rotate(0deg);
       }
+
       25% {
         transform: scale(0.98) rotate(-3deg);
       }
+
       75% {
         transform: scale(0.98) rotate(3deg);
       }
@@ -638,7 +721,8 @@
       transition: all 0.4s ease-out !important;
       visibility: hidden !important;
       display: none !important;
-      animation: none !important; /* Dừng mọi animation */
+      animation: none !important;
+      /* Dừng mọi animation */
     }
 
     .candle.blown .flame::before,
@@ -727,10 +811,13 @@
     }
 
     @keyframes glow-pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         opacity: 1;
         transform: translateX(-50%) scale(1);
       }
+
       50% {
         opacity: 0.85;
         transform: translateX(-50%) scale(0.95);
@@ -746,12 +833,11 @@
       width: 45px;
       height: 65px;
       background: linear-gradient(to top,
-        rgba(255, 200, 0, 0.9) 0%,
-        rgba(255, 150, 0, 0.95) 30%,
-        rgba(255, 100, 0, 0.85) 60%,
-        rgba(255, 50, 0, 0.5) 80%,
-        rgba(255, 0, 0, 0.2) 100%
-      );
+          rgba(255, 200, 0, 0.9) 0%,
+          rgba(255, 150, 0, 0.95) 30%,
+          rgba(255, 100, 0, 0.85) 60%,
+          rgba(255, 50, 0, 0.5) 80%,
+          rgba(255, 0, 0, 0.2) 100%);
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
       box-shadow:
         0 0 25px rgba(255, 150, 0, 0.9),
@@ -772,11 +858,10 @@
       width: 28px;
       height: 42px;
       background: linear-gradient(to top,
-        rgba(255, 255, 100, 0.95) 0%,
-        rgba(255, 200, 0, 0.8) 40%,
-        rgba(255, 150, 0, 0.4) 80%,
-        transparent 100%
-      );
+          rgba(255, 255, 100, 0.95) 0%,
+          rgba(255, 200, 0, 0.8) 40%,
+          rgba(255, 150, 0, 0.4) 80%,
+          transparent 100%);
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
       animation: inner-flame 0.18s ease-in-out infinite alternate;
     }
@@ -790,10 +875,9 @@
       width: 18px;
       height: 32px;
       background: linear-gradient(to top,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(255, 255, 150, 0.9) 50%,
-        rgba(255, 200, 0, 0.5) 100%
-      );
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 150, 0.9) 50%,
+          rgba(255, 200, 0, 0.5) 100%);
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
       animation: core-flame 0.08s ease-in-out infinite alternate;
     }
@@ -803,15 +887,19 @@
         transform: translateX(-50%) scale(1, 1) rotate(-1deg);
         opacity: 1;
       }
+
       25% {
         transform: translateX(-48%) scale(1.03, 0.97) rotate(2deg);
       }
+
       50% {
         transform: translateX(-50%) scale(0.97, 1.03) rotate(-2deg);
       }
+
       75% {
         transform: translateX(-52%) scale(1.02, 0.98) rotate(1deg);
       }
+
       100% {
         transform: translateX(-50%) scale(0.98, 1.02) rotate(0deg);
         opacity: 0.96;
@@ -822,6 +910,7 @@
       0% {
         transform: translateX(-50%) scale(1, 1);
       }
+
       100% {
         transform: translateX(-50%) scale(1.06, 0.94);
       }
@@ -832,6 +921,7 @@
         transform: translateX(-50%) scale(1, 1);
         opacity: 1;
       }
+
       100% {
         transform: translateX(-50%) scale(0.93, 1.07);
         opacity: 0.92;
@@ -847,11 +937,10 @@
       width: 120px;
       height: 120px;
       background: radial-gradient(circle at center,
-        rgba(255, 200, 0, 0.4) 0%,
-        rgba(255, 150, 0, 0.25) 30%,
-        rgba(255, 100, 0, 0.15) 60%,
-        transparent 100%
-      );
+          rgba(255, 200, 0, 0.4) 0%,
+          rgba(255, 150, 0, 0.25) 30%,
+          rgba(255, 100, 0, 0.15) 60%,
+          transparent 100%);
       border-radius: 50%;
       animation: light-pulse 1.2s ease-in-out infinite alternate;
       pointer-events: none;
@@ -864,6 +953,7 @@
         transform: translateX(-50%) scale(1);
         opacity: 0.7;
       }
+
       100% {
         transform: translateX(-50%) scale(1.25);
         opacity: 0.9;
@@ -879,10 +969,10 @@
       width: 8px;
       height: 50px;
       background: linear-gradient(to top,
-        rgba(120, 120, 120, 1) 0%,
-        rgba(160, 160, 160, 0.8) 40%,
-        rgba(180, 180, 180, 0.5) 70%,
-        transparent 100%);
+          rgba(120, 120, 120, 1) 0%,
+          rgba(160, 160, 160, 0.8) 40%,
+          rgba(180, 180, 180, 0.5) 70%,
+          transparent 100%);
       border-radius: 50%;
       opacity: 0;
       transition: opacity 0.1s ease;
@@ -896,16 +986,19 @@
         opacity: 1;
         filter: blur(3px);
       }
+
       30% {
         transform: translateX(-48%) translateY(-40px) scale(1.3) rotate(5deg);
         opacity: 0.8;
         filter: blur(4px);
       }
+
       60% {
         transform: translateX(-45%) translateY(-80px) scale(1.8) rotate(-5deg);
         opacity: 0.5;
         filter: blur(5px);
       }
+
       100% {
         transform: translateX(-40%) translateY(-140px) scale(2.5) rotate(10deg);
         opacity: 0;
@@ -923,10 +1016,13 @@
     }
 
     @keyframes breathe {
-      0%, 100% {
+
+      0%,
+      100% {
         opacity: 0.8;
         transform: scale(1);
       }
+
       50% {
         opacity: 1;
         transform: scale(1.05);
@@ -940,9 +1036,12 @@
     }
 
     @keyframes micPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.2);
       }
@@ -963,9 +1062,11 @@
         transform: scale(0) rotate(-180deg);
         opacity: 0;
       }
+
       50% {
         transform: scale(1.2) rotate(10deg);
       }
+
       100% {
         transform: scale(1) rotate(0deg);
         opacity: 1;
@@ -1007,6 +1108,7 @@
         opacity: 0;
         transform: translateY(50px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -1026,9 +1128,12 @@
     }
 
     @keyframes titlePulse {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.02);
       }
@@ -1062,13 +1167,11 @@
       right: 0;
       bottom: 0;
       background-image:
-        repeating-linear-gradient(
-          0deg,
+        repeating-linear-gradient(0deg,
           transparent,
           transparent 39px,
           rgba(139, 69, 19, 0.08) 39px,
-          rgba(139, 69, 19, 0.08) 40px
-        );
+          rgba(139, 69, 19, 0.08) 40px);
       pointer-events: none;
       border-radius: 5px;
     }
@@ -1105,6 +1208,7 @@
         opacity: 0;
         transform: translateY(30px) scale(0.95);
       }
+
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1120,9 +1224,12 @@
     }
 
     @keyframes iconFloat {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-5px);
       }
@@ -1133,7 +1240,7 @@
       color: #4A4A4A;
       line-height: 2;
       font-weight: 400;
-      font-family: 'Merriweather', 'Georgia', serif;
+      font-family: 'Be Vietnam Pro', 'Merriweather', 'Georgia', Arial, sans-serif;
       text-align: left;
       letter-spacing: 0.5px;
     }
@@ -1150,7 +1257,7 @@
       color: #8B4513;
       font-weight: 700;
       text-align: center;
-      font-family: 'Pacifico', 'Brush Script MT', cursive;
+      font-family: 'Be Vietnam Pro', 'Pacifico', 'Brush Script MT', cursive;
       animation: finalGlow 2s ease-in-out infinite;
       background: #FFFEF0;
       padding: 30px;
@@ -1160,9 +1267,12 @@
     }
 
     @keyframes finalGlow {
-      0%, 100% {
+
+      0%,
+      100% {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       }
+
       50% {
         box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
       }
@@ -1187,12 +1297,15 @@
         opacity: 0;
         transform: scale(0.3);
       }
+
       50% {
         transform: scale(1.05);
       }
+
       70% {
         transform: scale(0.9);
       }
+
       100% {
         opacity: 1;
         transform: scale(1);
@@ -1206,13 +1319,24 @@
     }
 
     @keyframes giftShake {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: rotate(0deg);
       }
-      10%, 30%, 50%, 70%, 90% {
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
         transform: rotate(-10deg);
       }
-      20%, 40%, 60%, 80% {
+
+      20%,
+      40%,
+      60%,
+      80% {
         transform: rotate(10deg);
       }
     }
@@ -1222,7 +1346,7 @@
       color: #8B4513;
       font-weight: 600;
       margin-bottom: 30px;
-      font-family: 'Georgia', serif;
+      font-family: 'Be Vietnam Pro', 'Georgia', Arial, sans-serif;
     }
 
     .gift-buttons-inline {
@@ -1285,12 +1409,15 @@
         opacity: 0;
         transform: translateY(0) rotate(0deg);
       }
+
       10% {
         opacity: 1;
       }
+
       90% {
         opacity: 1;
       }
+
       100% {
         opacity: 0;
         transform: translateY(-100vh) rotate(360deg);
@@ -1323,12 +1450,15 @@
         opacity: 0;
         transform: scale(0.3);
       }
+
       50% {
         transform: scale(1.05);
       }
+
       70% {
         transform: scale(0.9);
       }
+
       100% {
         opacity: 1;
         transform: scale(1);
@@ -1342,13 +1472,24 @@
     }
 
     @keyframes giftShake {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: rotate(0deg);
       }
-      10%, 30%, 50%, 70%, 90% {
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
         transform: rotate(-10deg);
       }
-      20%, 40%, 60%, 80% {
+
+      20%,
+      40%,
+      60%,
+      80% {
         transform: rotate(10deg);
       }
     }
@@ -1359,6 +1500,7 @@
       font-weight: 700;
       text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
       margin-bottom: 40px;
+      font-family: 'Be Vietnam Pro', 'Poppins', 'Segoe UI', Arial, sans-serif;
     }
 
     .gift-buttons {
@@ -1410,6 +1552,7 @@
         opacity: 0;
         transform: scale(0.5) rotate(-10deg);
       }
+
       100% {
         opacity: 1;
         transform: scale(1) rotate(0deg);
@@ -1434,9 +1577,12 @@
     }
 
     @keyframes gifBounce {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0) scale(1);
       }
+
       50% {
         transform: translateY(-10px) scale(1.02);
       }
@@ -1454,18 +1600,25 @@
     }
 
     @keyframes glitchError {
-      0%, 90%, 100% {
+
+      0%,
+      90%,
+      100% {
         transform: translate(0);
       }
+
       92% {
         transform: translate(-5px, 5px);
       }
+
       94% {
         transform: translate(5px, -5px);
       }
+
       96% {
         transform: translate(-5px, -5px);
       }
+
       98% {
         transform: translate(5px, 5px);
       }
@@ -1485,9 +1638,12 @@
     }
 
     @keyframes sadFace {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.1);
       }
@@ -1505,6 +1661,7 @@
         opacity: 0;
         transform: translateY(30px);
       }
+
       100% {
         opacity: 1;
         transform: translateY(0);
@@ -1533,9 +1690,11 @@
         transform: scale(0.5);
         opacity: 0;
       }
+
       50% {
         transform: scale(1.2);
       }
+
       100% {
         transform: scale(1);
         opacity: 1;
@@ -1556,6 +1715,7 @@
         opacity: 0;
         transform: translateY(50px) scale(0.9);
       }
+
       100% {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1577,9 +1737,12 @@
     }
 
     @keyframes iconSpin {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: rotate(0deg) scale(1);
       }
+
       50% {
         transform: rotate(10deg) scale(1.1);
       }
@@ -1592,7 +1755,7 @@
       font-size: 1.2em;
       border: none;
       border-radius: 20px;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Be Vietnam Pro', 'Poppins', 'Segoe UI', Arial, sans-serif;
       resize: vertical;
       box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.3),
@@ -1648,9 +1811,11 @@
         opacity: 0;
         transform: scale(0);
       }
+
       50% {
         transform: scale(1.2);
       }
+
       100% {
         opacity: 1;
         transform: scale(1);
@@ -1667,6 +1832,7 @@
       0% {
         transform: rotate(-180deg) scale(0);
       }
+
       100% {
         transform: rotate(0deg) scale(1);
       }
@@ -1713,9 +1879,12 @@
     }
 
     @keyframes musicPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
       }
+
       50% {
         box-shadow: 0 5px 30px rgba(102, 126, 234, 0.8);
       }
@@ -1742,11 +1911,13 @@
       animation: confetti-fall 4s ease-in-out infinite;
       opacity: 0.8;
     }
+
     @keyframes confetti-fall {
       0% {
         transform: translateY(-10vh) rotate(0deg);
         opacity: 1;
       }
+
       100% {
         transform: translateY(110vh) rotate(720deg);
         opacity: 0;
@@ -1760,11 +1931,15 @@
       animation: starTwinkle 2s ease-in-out infinite;
       pointer-events: none;
     }
+
     @keyframes starTwinkle {
-      0%, 100% {
+
+      0%,
+      100% {
         opacity: 0.3;
         transform: scale(0.5) rotate(0deg);
       }
+
       50% {
         opacity: 1;
         transform: scale(1) rotate(180deg);
@@ -1778,21 +1953,26 @@
       animation: catWalk 8s linear infinite;
       z-index: 100;
     }
+
     @keyframes catWalk {
       0% {
         left: -100px;
         transform: scaleX(1);
       }
+
       48% {
         transform: scaleX(1);
       }
+
       50% {
         left: 50%;
         transform: scaleX(-1);
       }
+
       98% {
         transform: scaleX(-1);
       }
+
       100% {
         left: -100px;
         transform: scaleX(1);
@@ -1806,22 +1986,28 @@
       animation: bearBounce 6s ease-in-out infinite;
       z-index: 100;
     }
+
     @keyframes bearBounce {
-      0%, 100% {
+
+      0%,
+      100% {
         bottom: -100px;
         left: 10%;
         transform: rotate(-10deg);
       }
+
       25% {
         bottom: 30%;
         left: 30%;
         transform: rotate(5deg);
       }
+
       50% {
         bottom: 50%;
         left: 50%;
         transform: rotate(0deg);
       }
+
       75% {
         bottom: 30%;
         left: 70%;
@@ -1840,17 +2026,21 @@
       animation: bubbleFloat 6s ease-in-out infinite;
       pointer-events: none;
     }
+
     @keyframes bubbleFloat {
       0% {
         bottom: -100px;
         opacity: 0;
       }
+
       10% {
         opacity: 0.8;
       }
+
       90% {
         opacity: 0.8;
       }
+
       100% {
         bottom: 110vh;
         opacity: 0;
@@ -1866,11 +2056,13 @@
       border-radius: 50%;
       box-shadow: 0 0 20px currentColor;
     }
+
     @keyframes bigExplode {
       0% {
         transform: translate(0, 0) scale(1);
         opacity: 1;
       }
+
       100% {
         transform: translate(var(--tx), var(--ty)) scale(0);
         opacity: 0;
@@ -1891,6 +2083,7 @@
         0 5px 15px rgba(0, 0, 0, 0.2);
       z-index: 50;
     }
+
     .balloon:before {
       content: "";
       position: absolute;
@@ -1901,6 +2094,7 @@
       background: linear-gradient(to bottom, rgba(150, 150, 150, 0.5), transparent);
       transform: translateX(-50%);
     }
+
     .balloon:after {
       content: "🎈";
       position: absolute;
@@ -1910,21 +2104,26 @@
       font-size: 45px;
       opacity: 0.9;
     }
+
     @keyframes float-up {
       0% {
         bottom: -150px;
         opacity: 0;
         transform: translateX(0) rotate(0deg);
       }
+
       10% {
         opacity: 1;
       }
+
       90% {
         opacity: 1;
       }
+
       50% {
         transform: translateX(40px) rotate(-8deg);
       }
+
       100% {
         bottom: 110vh;
         opacity: 0;
@@ -1939,17 +2138,20 @@
       animation: emojifly 8s ease-in-out infinite;
       z-index: 80;
     }
+
     @keyframes emojifly {
       0% {
         left: -100px;
         top: 20%;
         transform: rotate(0deg);
       }
+
       50% {
         left: 110%;
         top: 60%;
         transform: rotate(360deg);
       }
+
       100% {
         left: -100px;
         top: 20%;
@@ -1972,6 +2174,7 @@
         transform: translateY(0) rotateZ(0deg) translateX(0);
         opacity: 1;
       }
+
       100% {
         transform: translateY(100vh) rotateZ(720deg) translateX(100px);
         opacity: 0;
@@ -1983,6 +2186,7 @@
         transform: translateY(0) rotateZ(0deg) translateX(0);
         opacity: 1;
       }
+
       100% {
         transform: translateY(100vh) rotateZ(720deg) translateX(-100px);
         opacity: 0;
@@ -2002,6 +2206,7 @@
         transform: scale(1);
         opacity: 1;
       }
+
       100% {
         transform: scale(0);
         opacity: 0;
@@ -2023,9 +2228,11 @@
         opacity: 0;
         transform: scale(0);
       }
+
       50% {
         opacity: 1;
       }
+
       100% {
         opacity: 0;
         transform: scale(0);
@@ -2038,6 +2245,7 @@
         box-shadow: 0 0 5px, 0 0 10px, 0 0 20px;
         opacity: 1;
       }
+
       100% {
         box-shadow: 0 0 50px, 0 0 100px, 0 0 150px;
         opacity: 0;
@@ -2052,16 +2260,19 @@
       border-radius: 50%;
       box-shadow: 0 0 10px currentColor;
     }
+
     @keyframes explode {
       0% {
         transform: translate(0, 0) scale(1);
         opacity: 1;
       }
+
       100% {
         transform: translate(var(--tx), var(--ty)) scale(0);
         opacity: 0;
       }
     }
+
     .firework-container {
       position: fixed;
       pointer-events: none;
@@ -2074,6 +2285,7 @@
 
     /* Tablet - Màn hình nhỏ hơn 768px */
     @media (max-width: 768px) {
+
       /* Màn 0: Loading Screen */
       .code-container {
         width: 90%;
@@ -2556,6 +2768,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Màn 0: Loading Screen -->
   <div class="loading-screen" id="loadingScreen">
@@ -2572,17 +2785,14 @@
       </div>
     </div>
 
-    <!-- Loading bar -->
-    <div class="loading-bar-container" id="loadingBarContainer" style="display: none;">
-      <div class="loading-title">🎂 Đang tải thiệp sinh nhật...</div>
-      <div class="loading-bar">
-        <div class="loading-bar-fill" id="loadingBarFill"></div>
-        <div class="loading-percent" id="loadingPercent">0%</div>
-      </div>
+    <!-- Lottie Cooking Animation Container -->
+    <div style="display: none;" id="cookingContainer">
+      <div class="loading-title">🎂 Đang làm bánh sinh nhật ...</div>
+      <div id="cookingLottie" style="width: 320px; height: 320px; margin: 0 auto 24px auto;"></div>
     </div>
 
     <!-- Success message -->
-    <div class="success-container" id="successContainer">
+    <div class="success-container" id="successContainer" style="display: none;">
       <div class="success-icon">✅</div>
       <div class="success-text">LOAD THÀNH CÔNG!</div>
     </div>
@@ -2622,7 +2832,7 @@
   <!-- Màn hình 1: Thiệp chúc mừng -->
   <div class="card" id="greetingCard">
     <div class="emoji">🎂</div>
-    <h1>CHÚC MỪNG SINH NHẬT MIA!</h1>
+    <h1>Chúc mừng sinh nhật MIA!</h1>
     <div class="emoji">🎉</div>
     <p class="message">
       Chúc Mia tuổi mới tràn đầy niềm vui,<br>
@@ -2632,7 +2842,7 @@
     <p class="from-signature">
       ~ Thiệp đến từ Ed ~
     </p>
-    <button class="btn-next" id="btnNext">🎂 Thổi nến đi nào! ✨</button>
+    <button class="btn-next" id="btnNext">🎂 Cùng ước và thổi nến nào! ✨</button>
   </div>
 
   <!-- Hiệu ứng máy bay -->
@@ -2674,7 +2884,9 @@
             <div class="smoke"></div>
           </div>
         </div>
-        <div class="cake">🎂</div>
+        <!-- Bánh sinh nhật bằng hình ảnh -->
+        <img src="cake.png" alt="Birthday Cake" class="cake-img-noeffect"
+          style="width: 320px; max-width: 90vw; display: block; margin: -40px auto 0 auto; position: relative; z-index: 10; border-radius: 24px; animation: none; box-shadow: none; filter: none;" />
       </div>
     </div>
     <div class="instruction" id="instruction">
@@ -2689,12 +2901,12 @@
   <!-- Màn hình 3: Lời chúc -->
   <div class="wishes-screen" id="wishesScreen">
     <div class="wishes-container">
-      <div class="wishes-title">💝 LỜI CHÚC SINH NHẬT MIA 💝</div>
+      <div class="wishes-title">💝 My Wishes 💝</div>
 
       <div class="wish-card">
         <div class="wish-icon">🌟</div>
         <div class="wish-text">
-          Chúc Mia một tuổi mới tràn đầy <strong>năng lượng</strong> và <strong>niềm vui</strong>!<br>
+          Chúc Mia một tuổi mới tràn đầy năng lượng và niềm vui!<br>
           Mỗi ngày đều là một món quà tuyệt vời!
         </div>
       </div>
@@ -2702,48 +2914,28 @@
       <div class="wish-card">
         <div class="wish-icon">🎯</div>
         <div class="wish-text">
-          Hy vọng tất cả <strong>ước mơ</strong> và <strong>mục tiêu</strong> của Mia<br>
-          đều sớm trở thành hiện thực!
+          Hy vọng tất cả ước mơ và mục tiêu của Mia đều sớm trở thành hiện thực!
         </div>
       </div>
 
       <div class="wish-card">
         <div class="wish-icon">❤️</div>
         <div class="wish-text">
-          Luôn được bao quanh bởi <strong>tình yêu thương</strong>,<br>
-          <strong>sức khỏe dồi dào</strong> và <strong>hạnh phúc trọn vẹn</strong>!
+          Luôn được bao quanh bởi tình yêu thương, hạnh phúc trọn vẹn, Luôn có người chở che bảo vệ để Mia không bao giờ phải đối mặt khó khăn một mình! 💕!
         </div>
       </div>
 
       <div class="wish-card">
         <div class="wish-icon">🥛</div>
         <div class="wish-text">
-          Nhớ uống nhiều sữa mỗi ngày để có <strong>hàm răng trắng đẹp</strong>!<br>
-          Chăm sóc bản thân là yêu thương bản thân nhé! ✨
-        </div>
-      </div>
-
-      <div class="wish-card">
-        <div class="wish-icon">🌈</div>
-        <div class="wish-text">
-          Luôn có <strong>người chở che</strong> và yêu thương bên cạnh,<br>
-          để Mia không bao giờ phải đối mặt khó khăn một mình! 💕
+          Nhớ uống nhiều sữa mỗi ngày để có hàm răng khỏe trong khi chỉnh nha!✨
         </div>
       </div>
 
       <div class="wish-card">
         <div class="wish-icon">🚀</div>
         <div class="wish-text">
-          Con đường phía trước của Mia sẽ tràn đầy <strong>cơ hội</strong> và <strong>may mắn</strong>,<br>
-          tiến bước tự tin và vững chắc nhé!
-        </div>
-      </div>
-
-      <div class="wish-card">
-        <div class="wish-icon">🌸</div>
-        <div class="wish-text">
-          Nụ cười <strong>rạng rỡ</strong> của Mia sẽ luôn là nguồn năng lượng tích cực,<br>
-          lan tỏa niềm vui đến mọi người xung quanh!
+          Con đường phía trước của Mia sẽ tràn đầy cơ hội và may mắn, tiến bước tự tin và vững chắc nhé!
         </div>
       </div>
 
@@ -2754,20 +2946,20 @@
         </span>
         <div class="ed-signature">
           <span style="font-size: 0.5em; margin-top: 20px; display: block; font-style: italic; color: #A0522D;">
-            ✨ Gửi từ Ed với tất cả tình cảm ✨
+            ✨ Gửi từ anh nào đó hay bắt nạt✨
           </span>
         </div>
       </div>
 
       <!-- Câu hỏi nhận quà - Đặt ở cuối lời chúc -->
-      <div class="gift-question-inline" id="giftQuestion">
+      <!-- <div class="gift-question-inline" id="giftQuestion">
         <div class="gift-icon-inline">🎁</div>
         <div class="gift-title-inline">Bạn có muốn nhận quà không?</div>
         <div class="gift-buttons-inline">
           <button class="gift-btn-inline yes" id="btnYes">Có! 😍</button>
           <button class="gift-btn-inline no" id="btnNo">Không 😢</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -2796,12 +2988,8 @@
     <div class="wish-form-container" id="wishFormContainer">
       <div class="form-icon">🎁</div>
       <div class="form-title">Quà của bạn là 1 điều ước<br>Nhập điều ước 🌟</div>
-      <textarea
-        class="wish-input"
-        id="wishInput"
-        placeholder="Nhập điều ước của bạn vào đây... ✨"
-        maxlength="500"
-      ></textarea>
+      <textarea class="wish-input" id="wishInput" placeholder="Nhập điều ước của bạn vào đây... ✨"
+        maxlength="500"></textarea>
       <button class="submit-btn" id="submitBtn">Gửi điều ước đi 🚀</button>
     </div>
 
@@ -2852,9 +3040,8 @@
     const codeContent = document.getElementById('codeContent');
     const codeCursor = document.getElementById('codeCursor');
     const codeContainer = document.getElementById('codeContainer');
-    const loadingBarContainer = document.getElementById('loadingBarContainer');
-    const loadingBarFill = document.getElementById('loadingBarFill');
-    const loadingPercent = document.getElementById('loadingPercent');
+    const cookingLottie = document.getElementById('cookingLottie');
+    const cookingContainer = document.getElementById('cookingContainer');
     const successContainer = document.getElementById('successContainer');
     const loadingScreen = document.getElementById('loadingScreen');
 
@@ -2878,45 +3065,80 @@
 
           setTimeout(() => {
             codeContainer.style.display = 'none';
-            loadingBarContainer.style.display = 'block';
-            startLoading();
+            cookingContainer.style.display = 'block';
+            startCookingAnimation();
           }, 500);
         }, 500);
       }
     }
 
-    // Bắt đầu loading bar - Tối ưu hóa
-    function startLoading() {
-      let percent = 0;
-      const interval = setInterval(() => {
-        percent += 2; // Tăng nhanh hơn: +2 thay vì +1
-        loadingPercent.textContent = percent + '%';
+    // Load và chạy Lottie Cooking animation
+    function startCookingAnimation() {
+      console.log('Starting cooking animation...');
+      
+      // Đảm bảo Lottie đã được load
+      if (typeof lottie === 'undefined') {
+        console.error('❌ Lottie library not loaded!');
+        return;
+      }
 
-        if (percent >= 100) {
-          clearInterval(interval);
-          setTimeout(showSuccess, 200); // Giảm từ 300ms xuống 200ms
-        }
-      }, 25); // 1.25 giây để load 100% (tối ưu từ 3 giây)
-    }
+      try {
+        console.log('Attempting to load Cooking.json with path...');
+        const anim = lottie.loadAnimation({
+          container: cookingLottie,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: 'Cooking.json'
+        });
 
-    // Chuyển sang màn Go
-    function showSuccess() {
-      loadingBarContainer.style.animation = 'fadeOut 0.5s ease-out forwards';
+        console.log('✅ Animation created:', anim);
 
-      setTimeout(() => {
-        loadingBarContainer.style.display = 'none';
+        // Khi animation chạy xong, chuyển sang màn Go
+        anim.addEventListener('complete', () => {
+          console.log('✅ Cooking animation completed!');
+          setTimeout(() => {
+            cookingContainer.style.display = 'none';
+            successContainer.style.display = 'block';
+            
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+              const goScreen = document.getElementById('goScreen');
+              if (goScreen) {
+                goScreen.style.display = 'flex';
+              }
+            }, 800);
+          }, 300);
+        });
 
-        // Hiển thị màn Go
-        const goScreen = document.getElementById('goScreen');
-        if (goScreen) {
-          goScreen.style.display = 'flex';
-        }
+        // Fallback: nếu animation không chạy sau 45 giây
+        setTimeout(() => {
+          if (cookingContainer.style.display !== 'none') {
+            console.warn('⏱️ Animation timeout, skipping...');
+            cookingContainer.style.display = 'none';
+            successContainer.style.display = 'block';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+              const goScreen = document.getElementById('goScreen');
+              if (goScreen) {
+                goScreen.style.display = 'flex';
+              }
+            }, 800);
+          }
+        }, 45000);
 
-        // Xóa loading screen sau khi animation xong
+      } catch (error) {
+        console.error('❌ Error loading Cooking.json:', error);
+        cookingContainer.style.display = 'none';
+        successContainer.style.display = 'block';
         setTimeout(() => {
           loadingScreen.style.display = 'none';
-        }, 1000);
-      }, 500);
+          const goScreen = document.getElementById('goScreen');
+          if (goScreen) {
+            goScreen.style.display = 'flex';
+          }
+        }, 800);
+      }
     }
 
     // Bắt đầu loading screen - Tối ưu hóa
@@ -3535,20 +3757,20 @@
         },
         body: JSON.stringify(formData)
       })
-      .then(response => {
-        if (response.ok) {
-          console.log('✅ Email đã gửi thành công qua Formspree!');
-          showSuccessMessage();
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      })
-      .catch(error => {
-        console.error('❌ Lỗi khi gửi email:', error);
-        submitBtn.textContent = 'Gửi điều ước đi 🚀';
-        submitBtn.disabled = false;
-        alert('Có lỗi xảy ra khi gửi email. Vui lòng thử lại! 😔\n\nLỗi: ' + error.message);
-      });
+        .then(response => {
+          if (response.ok) {
+            console.log('✅ Email đã gửi thành công qua Formspree!');
+            showSuccessMessage();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .catch(error => {
+          console.error('❌ Lỗi khi gửi email:', error);
+          submitBtn.textContent = 'Gửi điều ước đi 🚀';
+          submitBtn.disabled = false;
+          alert('Có lỗi xảy ra khi gửi email. Vui lòng thử lại! 😔\n\nLỗi: ' + error.message);
+        });
     }
 
     // Hàm hiển thị thành công
@@ -3602,7 +3824,7 @@
       const entryPosition = Math.floor(Math.random() * 3);
       let startX, startY, endX, endY;
 
-      switch(entryPosition) {
+      switch (entryPosition) {
         case 0: // Từ trên xuống
           startX = Math.random() * 100;
           startY = -150;
@@ -3831,7 +4053,7 @@
     // Tạo confetti (giấy rơi)
     function createConfetti(count = 50) {
       const confettiColors = ['#FFD700', '#FF6B9D', '#845EC2', '#00D2FC', '#FF6348', '#A8E6CF', '#F38181'];
-      
+
       for (let i = 0; i < count; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
@@ -3840,16 +4062,16 @@
         confetti.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
         confetti.style.width = (Math.random() * 8 + 4) + 'px';
         confetti.style.height = (Math.random() * 8 + 4) + 'px';
-        
+
         const duration = Math.random() * 2 + 3; // 3-5 giây
         const isFallingLeft = Math.random() > 0.5;
-        
-        confetti.style.animation = isFallingLeft 
+
+        confetti.style.animation = isFallingLeft
           ? `confetti-fall-left ${duration}s linear forwards`
           : `confetti-fall ${duration}s linear forwards`;
-        
+
         document.body.appendChild(confetti);
-        
+
         setTimeout(() => confetti.remove(), duration * 1000);
       }
     }
@@ -3861,23 +4083,23 @@
         sparkle.className = 'sparkle';
         sparkle.style.left = x + 'px';
         sparkle.style.top = y + 'px';
-        
+
         const sparkleColors = ['#FFD700', '#FFC75F', '#FF6B9D', '#00D2FC'];
         sparkle.style.background = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-        
+
         const angle = (Math.PI * 2 * i) / count;
         const distance = 30 + Math.random() * 50;
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
-        
+
         sparkle.style.setProperty('--tx', tx + 'px');
         sparkle.style.setProperty('--ty', ty + 'px');
-        
+
         const duration = Math.random() * 0.8 + 0.5;
         sparkle.style.animation = `sparkle-shine ${duration}s ease-out forwards`;
-        
+
         document.body.appendChild(sparkle);
-        
+
         setTimeout(() => sparkle.remove(), duration * 1000);
       }
     }
@@ -3885,7 +4107,7 @@
     // Tạo bong bóng nổ
     function createBubbleBurst(x, y) {
       const burstColors = ['#FFD700', '#FF6B9D', '#845EC2', '#00D2FC'];
-      
+
       for (let i = 0; i < 5; i++) {
         const bubble = document.createElement('div');
         bubble.className = 'burst-bubble';
@@ -3895,9 +4117,9 @@
         bubble.style.height = bubble.style.width;
         bubble.style.background = burstColors[Math.floor(Math.random() * burstColors.length)];
         bubble.style.animation = `bubble-burst ${0.6 + Math.random() * 0.4}s ease-out forwards`;
-        
+
         document.body.appendChild(bubble);
-        
+
         setTimeout(() => bubble.remove(), 1000);
       }
     }
@@ -3913,9 +4135,9 @@
           emoji.style.top = Math.random() * window.innerHeight * 0.5 + 'px';
           emoji.style.fontSize = (40 + Math.random() * 40) + 'px';
           emoji.style.animation = `emojifly ${6 + Math.random() * 4}s ease-in-out forwards`;
-          
+
           document.body.appendChild(emoji);
-          
+
           setTimeout(() => emoji.remove(), 10000);
         }, i * 300);
       }
@@ -3933,4 +4155,5 @@
     // (Sẽ thêm ở phần cuối)
   </script>
 </body>
+
 </html>
