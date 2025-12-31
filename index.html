@@ -1957,6 +1957,93 @@
       }
     }
 
+    /* Confetti (Giấy rơi) */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #ffd700;
+      pointer-events: none;
+      z-index: 70;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotateZ(0deg) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotateZ(720deg) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes confetti-fall-left {
+      0% {
+        transform: translateY(0) rotateZ(0deg) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotateZ(720deg) translateX(-100px);
+        opacity: 0;
+      }
+    }
+
+    /* Bóng bay nổ */
+    .burst-bubble {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    @keyframes bubble-burst {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Tia sáng */
+    .sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 65;
+    }
+
+    @keyframes sparkle-shine {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+
+    /* Hiệu ứng flash sáng */
+    @keyframes flash-burst {
+      0% {
+        box-shadow: 0 0 5px, 0 0 10px, 0 0 20px;
+        opacity: 1;
+      }
+      100% {
+        box-shadow: 0 0 50px, 0 0 100px, 0 0 150px;
+        opacity: 0;
+      }
+    }
+
     /* Hiệu ứng pháo hoa mềm mại */
     .firework {
       position: fixed;
@@ -2909,8 +2996,7 @@
       }
     });
 
-    // =============================================
-    // XỬ LÝ NÚT GO
+    // XỰ LÝ NÚT GO
     // =============================================
     const goBtn = document.getElementById('goBtn');
     const goScreenElement = document.getElementById('goScreen');
@@ -2933,6 +3019,32 @@
         // Hiển thị màn 1 (greeting card)
         if (greetingCard) {
           greetingCard.style.display = 'flex';
+
+          // ===== HIỆU ỨNG NGẪU NHIÊN HƠN Ở MÀN 1 =====
+          // Confetti: random số lần, random delay
+          const confettiTimes = 2 + Math.floor(Math.random() * 3); // 2-4 lần
+          for (let i = 0; i < confettiTimes; i++) {
+            setTimeout(() => createConfetti(40 + Math.floor(Math.random() * 60)), 200 + Math.random() * 1200);
+          }
+
+          // Firework: random số lần, random delay, random interval
+          let fireworkCount = 6 + Math.floor(Math.random() * 5); // 6-10 lần
+          let fireworkIntervals = [];
+          for (let i = 0; i < fireworkCount; i++) {
+            fireworkIntervals.push(setTimeout(() => randomFirework(), 500 + Math.random() * 7000));
+          }
+
+          // Đã bỏ hiệu ứng emoji bay ở màn 1
+
+          // Celebration spray: random vị trí, random delay, random số lần
+          const sprayCount = 2 + Math.floor(Math.random() * 3); // 2-4 lần
+          for (let i = 0; i < sprayCount; i++) {
+            setTimeout(() => {
+              const x = Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1;
+              const y = Math.random() * window.innerHeight * 0.4 + window.innerHeight * 0.05;
+              createCelebrationSpray(x, y);
+            }, 400 + Math.random() * 1800);
+          }
         }
       }, 1000);
     });
@@ -3694,6 +3806,131 @@
     setTimeout(randomFirework, 500);
     setTimeout(randomFirework, 1200);
     setTimeout(randomFirework, 2000);
+
+    // =============================================
+    // HIỆU ỨNG NÂNG CAO CHO MÀN 1
+    // =============================================
+
+    // Tạo bóng bay bay lên
+    function createBalloons(count = 10) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const balloon = document.createElement('div');
+          balloon.className = 'balloon';
+          const balloonColors = ['#FF6B9D', '#FFC75F', '#845EC2', '#00D2FC', '#FF6348', '#A8E6CF'];
+          balloon.style.background = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+          balloon.style.left = Math.random() * window.innerWidth + 'px';
+          balloon.style.animation = `float-up ${8 + Math.random() * 4}s ease-in-out forwards`;
+          document.body.appendChild(balloon);
+
+          setTimeout(() => balloon.remove(), 12000);
+        }, i * 200);
+      }
+    }
+
+    // Tạo confetti (giấy rơi)
+    function createConfetti(count = 50) {
+      const confettiColors = ['#FFD700', '#FF6B9D', '#845EC2', '#00D2FC', '#FF6348', '#A8E6CF', '#F38181'];
+      
+      for (let i = 0; i < count; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = '-10px';
+        confetti.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.width = (Math.random() * 8 + 4) + 'px';
+        confetti.style.height = (Math.random() * 8 + 4) + 'px';
+        
+        const duration = Math.random() * 2 + 3; // 3-5 giây
+        const isFallingLeft = Math.random() > 0.5;
+        
+        confetti.style.animation = isFallingLeft 
+          ? `confetti-fall-left ${duration}s linear forwards`
+          : `confetti-fall ${duration}s linear forwards`;
+        
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), duration * 1000);
+      }
+    }
+
+    // Tạo tia sáng (sparkles)
+    function createSparkles(x, y, count = 15) {
+      for (let i = 0; i < count; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        
+        const sparkleColors = ['#FFD700', '#FFC75F', '#FF6B9D', '#00D2FC'];
+        sparkle.style.background = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+        
+        const angle = (Math.PI * 2 * i) / count;
+        const distance = 30 + Math.random() * 50;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        sparkle.style.setProperty('--tx', tx + 'px');
+        sparkle.style.setProperty('--ty', ty + 'px');
+        
+        const duration = Math.random() * 0.8 + 0.5;
+        sparkle.style.animation = `sparkle-shine ${duration}s ease-out forwards`;
+        
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), duration * 1000);
+      }
+    }
+
+    // Tạo bong bóng nổ
+    function createBubbleBurst(x, y) {
+      const burstColors = ['#FFD700', '#FF6B9D', '#845EC2', '#00D2FC'];
+      
+      for (let i = 0; i < 5; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'burst-bubble';
+        bubble.style.left = x + 'px';
+        bubble.style.top = y + 'px';
+        bubble.style.width = (30 + Math.random() * 20) + 'px';
+        bubble.style.height = bubble.style.width;
+        bubble.style.background = burstColors[Math.floor(Math.random() * burstColors.length)];
+        bubble.style.animation = `bubble-burst ${0.6 + Math.random() * 0.4}s ease-out forwards`;
+        
+        document.body.appendChild(bubble);
+        
+        setTimeout(() => bubble.remove(), 1000);
+      }
+    }
+
+    // Tạo hiệu ứng emoji bay
+    function createFlyingEmojis(emojis = ['🎉', '✨', '🎁', '💝', '🌟'], count = 5) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const emoji = document.createElement('div');
+          emoji.className = 'flying-emoji';
+          emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          emoji.style.left = Math.random() * window.innerWidth + 'px';
+          emoji.style.top = Math.random() * window.innerHeight * 0.5 + 'px';
+          emoji.style.fontSize = (40 + Math.random() * 40) + 'px';
+          emoji.style.animation = `emojifly ${6 + Math.random() * 4}s ease-in-out forwards`;
+          
+          document.body.appendChild(emoji);
+          
+          setTimeout(() => emoji.remove(), 10000);
+        }, i * 300);
+      }
+    }
+
+    // Hàm tạo lùm hoa (spray nhiều hiệu ứng)
+    function createCelebrationSpray(x, y) {
+      createFirework(x, y);
+      createSparkles(x, y, 20);
+      createBubbleBurst(x, y);
+    }
+
+    // Thêm hiệu ứng vào khi hiển thị màn 1 (greeting card)
+    // Tìm nơi goBtn.addEventListener kết thúc và thêm vào đó
+    // (Sẽ thêm ở phần cuối)
   </script>
 </body>
 </html>
