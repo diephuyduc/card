@@ -3094,9 +3094,11 @@
 
         console.log('✅ Animation created:', anim);
 
-        // Khi animation chạy xong, chuyển sang màn Go
-        anim.addEventListener('complete', () => {
-          console.log('✅ Cooking animation completed!');
+        // Dừng animation sau 10 giây
+        setTimeout(() => {
+          console.log('✅ 10 seconds passed, stopping animation...');
+          anim.pause();
+          
           setTimeout(() => {
             cookingContainer.style.display = 'none';
             successContainer.style.display = 'block';
@@ -3109,23 +3111,26 @@
               }
             }, 800);
           }, 300);
-        });
+        }, 10000); // 10 giây
 
-        // Fallback: nếu animation không chạy sau 45 giây
-        setTimeout(() => {
+        // Fallback: nếu có lỗi gì xảy ra
+        anim.addEventListener('complete', () => {
+          console.log('✅ Cooking animation completed!');
           if (cookingContainer.style.display !== 'none') {
-            console.warn('⏱️ Animation timeout, skipping...');
-            cookingContainer.style.display = 'none';
-            successContainer.style.display = 'block';
             setTimeout(() => {
-              loadingScreen.style.display = 'none';
-              const goScreen = document.getElementById('goScreen');
-              if (goScreen) {
-                goScreen.style.display = 'flex';
-              }
-            }, 800);
+              cookingContainer.style.display = 'none';
+              successContainer.style.display = 'block';
+              
+              setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                const goScreen = document.getElementById('goScreen');
+                if (goScreen) {
+                  goScreen.style.display = 'flex';
+                }
+              }, 800);
+            }, 300);
           }
-        }, 45000);
+        });
 
       } catch (error) {
         console.error('❌ Error loading Cooking.json:', error);
