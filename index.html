@@ -7,7 +7,7 @@
   <!-- Lottie Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;600;700&family=Merriweather:wght@300;400;700&family=Pacifico&display=swap');
 
     * {
       margin: 0;
@@ -169,7 +169,7 @@
       width: 0%;
       background: linear-gradient(90deg, #00ff00, #00ffff, #00ff00);
       background-size: 200% 100%;
-      animation: loadingProgress 3s ease-in-out forwards, shimmer 1.5s linear infinite;
+      animation: loadingProgress 1.25s ease-in-out forwards, shimmer 1s linear infinite;
       border-radius: 15px;
       position: relative;
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
@@ -251,35 +251,30 @@
       }
     }
 
-    /* Matrix rain effect */
-    .matrix-rain {
-      position: fixed;
+    /* Simple animated background particles */
+    .loading-screen::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: 1;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 0, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 60% 70%, rgba(0, 255, 255, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 10%, rgba(0, 255, 0, 0.1) 2px, transparent 2px);
+      background-size: 250px 250px, 350px 350px, 300px 300px;
+      animation: floatParticles 15s linear infinite;
+      z-index: 0;
+      opacity: 0.5;
     }
 
-    .matrix-column {
-      position: absolute;
-      top: -100%;
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-      color: #00ff00;
-      text-shadow: 0 0 5px #00ff00;
-      animation: matrixFall linear infinite;
-    }
-
-    @keyframes matrixFall {
+    @keyframes floatParticles {
       0% {
-        top: -100%;
-        opacity: 1;
+        background-position: 0 0, 0 0, 0 0;
       }
       100% {
-        top: 100%;
-        opacity: 0.3;
+        background-position: 250px 250px, -350px 350px, 300px -300px;
       }
     }
 
@@ -384,6 +379,16 @@
       margin-top: 25px;
       line-height: 1.8;
       font-weight: 300;
+    }
+
+    .from-signature {
+      font-size: 1em;
+      color: #8B4513;
+      margin-top: 25px;
+      font-family: 'Pacifico', 'Brush Script MT', cursive;
+      font-style: italic;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     .decorative-line {
@@ -554,17 +559,30 @@
       }
     }
 
+    /* Khi nến bị thổi tắt - Ẩn hoàn toàn ngọn lửa */
     .candle.blown .flame,
     .candle.blown .wick-glow,
     .candle.blown .flame-light {
       opacity: 0 !important;
       transform: translateX(-50%) scale(0) !important;
       transition: all 0.4s ease-out !important;
+      visibility: hidden !important;
+      display: none !important;
+      animation: none !important; /* Dừng mọi animation */
+    }
+
+    .candle.blown .flame::before,
+    .candle.blown .flame::after {
+      opacity: 0 !important;
+      display: none !important;
+      animation: none !important;
     }
 
     .candle.blown .smoke {
       opacity: 1 !important;
       animation: smoke-rise 2.5s ease-out forwards !important;
+      display: block !important;
+      visibility: visible !important;
     }
 
     /* Thân nến với màu sắc đẹp hơn */
@@ -927,12 +945,12 @@
 
     /* Envelope/Letter Header */
     .wishes-title {
-      font-size: 2em;
+      font-size: 2.2em;
       font-weight: 600;
       color: #8B4513;
       text-align: center;
       margin-bottom: 30px;
-      font-family: 'Georgia', serif;
+      font-family: 'Dancing Script', 'Brush Script MT', cursive;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       animation: titlePulse 3s ease-in-out infinite;
     }
@@ -1045,7 +1063,7 @@
       color: #4A4A4A;
       line-height: 2;
       font-weight: 400;
-      font-family: 'Georgia', serif;
+      font-family: 'Merriweather', 'Georgia', serif;
       text-align: left;
       letter-spacing: 0.5px;
     }
@@ -1062,7 +1080,7 @@
       color: #8B4513;
       font-weight: 700;
       text-align: center;
-      font-family: 'Brush Script MT', cursive;
+      font-family: 'Pacifico', 'Brush Script MT', cursive;
       animation: finalGlow 2s ease-in-out infinite;
       background: #FFFEF0;
       padding: 30px;
@@ -1633,6 +1651,18 @@
       }
     }
 
+    /* Hiệu ứng ảnh ngẫu nhiên (GIF, PNG, JPG, WEBP) */
+    .random-image {
+      position: fixed;
+      pointer-events: none;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .random-image:hover {
+      transform: scale(1.1);
+    }
+
     /* Hiệu ứng pháo giấy nhẹ nhàng */
     .confetti {
       position: fixed;
@@ -1880,13 +1910,498 @@
       pointer-events: none;
       z-index: 5;
     }
+
+    /* =============================================
+       RESPONSIVE - MOBILE & TABLET
+       ============================================= */
+
+    /* Tablet - Màn hình nhỏ hơn 768px */
+    @media (max-width: 768px) {
+      /* Màn 0: Loading Screen */
+      .code-container {
+        width: 90%;
+        padding: 15px;
+      }
+
+      .code-content {
+        font-size: 12px;
+        min-height: 150px;
+      }
+
+      .loading-title {
+        font-size: 1.2em;
+      }
+
+      .success-icon {
+        font-size: 80px;
+      }
+
+      .success-text {
+        font-size: 1.5em;
+      }
+
+      /* Màn 1: Thiệp chúc mừng */
+      .card {
+        padding: 40px 30px;
+        max-width: 90%;
+      }
+
+      .card h1 {
+        font-size: 2em;
+      }
+
+      .emoji {
+        font-size: 3em;
+      }
+
+      .message {
+        font-size: 1.1em;
+      }
+
+      .from-signature {
+        font-size: 0.9em;
+      }
+
+      .btn-next {
+        padding: 12px 30px;
+        font-size: 1em;
+      }
+
+      /* Màn 2: Thổi nến */
+      .cat-holder {
+        width: 180px;
+        height: 180px;
+      }
+
+      .cake {
+        font-size: 120px;
+      }
+
+      .candles {
+        top: -100px;
+        gap: 40px;
+      }
+
+      .instruction {
+        font-size: 1.3em;
+        margin-top: 30px;
+      }
+
+      .mic-icon {
+        font-size: 50px;
+      }
+
+      /* Màn 3: Lời chúc */
+      .wishes-container {
+        max-width: 90%;
+      }
+
+      .wishes-title {
+        font-size: 1.8em;
+      }
+
+      .wish-card {
+        padding: 30px 40px;
+      }
+
+      .wish-icon {
+        font-size: 1.8em;
+      }
+
+      .wish-text {
+        font-size: 1em;
+        line-height: 1.8;
+      }
+
+      .final-message {
+        font-size: 1.5em;
+        padding: 25px;
+      }
+
+      .gift-icon-inline {
+        font-size: 60px;
+      }
+
+      .gift-title-inline {
+        font-size: 1.5em;
+      }
+
+      .gift-btn-inline {
+        padding: 12px 30px;
+        font-size: 1.1em;
+      }
+
+      /* Màn 4: Nhận quà */
+      .error-gif {
+        width: 200px;
+        height: 200px;
+      }
+
+      .error-code {
+        font-size: 100px;
+      }
+
+      .error-message {
+        font-size: 1.2em;
+      }
+
+      .form-title {
+        font-size: 1.5em;
+      }
+
+      .wish-input {
+        font-size: 0.95em;
+        min-height: 120px;
+      }
+    }
+
+    /* Mobile - Màn hình nhỏ hơn 480px */
+    @media (max-width: 480px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      /* Màn 0: Loading Screen */
+      .code-container {
+        width: 95%;
+        padding: 10px;
+      }
+
+      .code-content {
+        font-size: 10px;
+        min-height: 120px;
+        line-height: 1.6;
+      }
+
+      .loading-bar-container {
+        width: 90%;
+      }
+
+      .loading-title {
+        font-size: 1em;
+      }
+
+      .loading-bar {
+        height: 25px;
+      }
+
+      .success-icon {
+        font-size: 60px;
+      }
+
+      .success-text {
+        font-size: 1.2em;
+      }
+
+      /* Màn 1: Thiệp chúc mừng */
+      .card {
+        padding: 30px 20px;
+        max-width: 95%;
+        border-radius: 20px;
+      }
+
+      .card h1 {
+        font-size: 1.5em;
+      }
+
+      .emoji {
+        font-size: 2.5em;
+      }
+
+      .message {
+        font-size: 0.95em;
+        line-height: 1.6;
+      }
+
+      .from-signature {
+        font-size: 0.85em;
+        margin-top: 20px;
+      }
+
+      .btn-next {
+        padding: 10px 25px;
+        font-size: 0.9em;
+      }
+
+      /* Màn 2: Thổi nến */
+      .cat-holder {
+        width: 120px;
+        height: 120px;
+      }
+
+      .cake {
+        font-size: 100px;
+      }
+
+      .candles {
+        top: -80px;
+        gap: 25px;
+      }
+
+      .candle {
+        width: 70px;
+      }
+
+      .candle-flame-container {
+        width: 70px;
+        height: 90px;
+      }
+
+      .candle-smoke-container {
+        width: 70px;
+        height: 120px;
+      }
+
+      .candle-body {
+        width: 35px;
+        height: 70px;
+      }
+
+      .instruction {
+        font-size: 1.1em;
+        margin-top: 20px;
+        padding: 0 15px;
+      }
+
+      .mic-icon {
+        font-size: 40px;
+      }
+
+      .success-message {
+        font-size: 1.5em;
+      }
+
+      /* Màn 3: Lời chúc */
+      .wishes-screen {
+        padding: 20px 10px;
+      }
+
+      .wishes-container {
+        max-width: 95%;
+      }
+
+      .wishes-title {
+        font-size: 1.4em;
+        margin-bottom: 20px;
+      }
+
+      .wish-card {
+        padding: 25px 30px;
+        margin: 15px 0;
+      }
+
+      .wish-card::after {
+        font-size: 30px;
+        top: 15px;
+        right: 15px;
+      }
+
+      .wish-icon {
+        font-size: 1.5em;
+        margin-right: 10px;
+      }
+
+      .wish-text {
+        font-size: 0.9em;
+        line-height: 1.8;
+      }
+
+      .final-message {
+        font-size: 1.2em;
+        padding: 20px;
+        margin-top: 30px;
+      }
+
+      .final-message span {
+        font-size: 0.7em !important;
+      }
+
+      /* Gift question inline */
+      .gift-question-inline {
+        padding: 30px 20px;
+        margin-top: 30px;
+      }
+
+      .gift-icon-inline {
+        font-size: 50px;
+      }
+
+      .gift-title-inline {
+        font-size: 1.2em;
+      }
+
+      .gift-buttons-inline {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .gift-btn-inline {
+        padding: 12px 30px;
+        font-size: 1em;
+        width: 100%;
+      }
+
+      /* Màn 4: Nhận quà */
+      .gift-screen {
+        padding: 20px 10px;
+      }
+
+      .error-gif {
+        width: 150px;
+        height: 150px;
+      }
+
+      .error-code {
+        font-size: 80px;
+      }
+
+      .error-message {
+        font-size: 1em;
+        padding: 0 15px;
+      }
+
+      .error-emoji {
+        font-size: 50px;
+      }
+
+      .countdown-text {
+        font-size: 1.2em;
+      }
+
+      .countdown-number {
+        font-size: 4em;
+      }
+
+      .form-icon {
+        font-size: 50px;
+      }
+
+      .form-title {
+        font-size: 1.2em;
+        padding: 0 15px;
+      }
+
+      .wish-input {
+        font-size: 0.9em;
+        min-height: 100px;
+        padding: 12px;
+      }
+
+      .submit-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+      }
+
+      .success-title {
+        font-size: 1.8em;
+      }
+
+      .success-text {
+        font-size: 1em;
+        padding: 0 15px;
+      }
+
+      /* Music Toggle */
+      .music-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      /* Airplane */
+      .airplane {
+        font-size: 60px;
+      }
+
+      /* Random images - Smaller on mobile */
+      .random-image {
+        max-width: 60px;
+      }
+    }
+
+    /* Very small mobile - iPhone SE, etc */
+    @media (max-width: 375px) {
+      .card h1 {
+        font-size: 1.3em;
+      }
+
+      .message {
+        font-size: 0.85em;
+      }
+
+      .from-signature {
+        font-size: 0.75em;
+        margin-top: 15px;
+      }
+
+      .wishes-title {
+        font-size: 1.2em;
+      }
+
+      .wish-card {
+        padding: 20px 25px;
+      }
+
+      .wish-text {
+        font-size: 0.85em;
+      }
+
+      .final-message {
+        font-size: 1em;
+      }
+
+      .gift-title-inline {
+        font-size: 1.1em;
+      }
+
+      .error-code {
+        font-size: 60px;
+      }
+
+      .form-title {
+        font-size: 1.1em;
+      }
+    }
+
+    /* Landscape mode for mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .card {
+        padding: 20px 30px;
+        max-width: 80%;
+      }
+
+      .card h1 {
+        font-size: 1.5em;
+      }
+
+      .emoji {
+        font-size: 2em;
+      }
+
+      .message {
+        font-size: 0.9em;
+      }
+
+      .cake-container {
+        transform: scale(0.7);
+      }
+
+      .wishes-container {
+        padding: 10px 0;
+      }
+
+      .wish-card {
+        padding: 20px 30px;
+        margin: 10px 0;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Màn 0: Loading Screen -->
   <div class="loading-screen" id="loadingScreen">
-    <!-- Matrix rain effect -->
-    <div class="matrix-rain" id="matrixRain"></div>
 
     <!-- Code editor -->
     <div class="code-container" id="codeContainer">
@@ -1941,12 +2456,15 @@
   <!-- Màn hình 1: Thiệp chúc mừng -->
   <div class="card" id="greetingCard">
     <div class="emoji">🎂</div>
-    <h1>CHÚC MỪNG SINH NHẬT!</h1>
+    <h1>CHÚC MỪNG SINH NHẬT MIA!</h1>
     <div class="emoji">🎉</div>
     <p class="message">
-      Chúc bạn tuổi mới tràn đầy niềm vui,<br>
+      Chúc Mia tuổi mới tràn đầy niềm vui,<br>
       hạnh phúc và thành công!<br>
       🎈 Luôn vui vẻ và tươi trẻ! 🎁
+    </p>
+    <p class="from-signature">
+      ~ Thiệp đến từ Ed ~
     </p>
     <button class="btn-next" id="btnNext">🎂 Thổi nến đi nào! ✨</button>
   </div>
@@ -2005,12 +2523,12 @@
   <!-- Màn hình 3: Lời chúc -->
   <div class="wishes-screen" id="wishesScreen">
     <div class="wishes-container">
-      <div class="wishes-title">💝 LỜI CHÚC SINH NHẬT 💝</div>
+      <div class="wishes-title">💝 LỜI CHÚC SINH NHẬT MIA 💝</div>
 
       <div class="wish-card">
         <div class="wish-icon">🌟</div>
         <div class="wish-text">
-          Chúc bạn một tuổi mới tràn đầy <strong>năng lượng</strong> và <strong>niềm vui</strong>!<br>
+          Chúc Mia một tuổi mới tràn đầy <strong>năng lượng</strong> và <strong>niềm vui</strong>!<br>
           Mỗi ngày đều là một món quà tuyệt vời!
         </div>
       </div>
@@ -2018,8 +2536,8 @@
       <div class="wish-card">
         <div class="wish-icon">🎯</div>
         <div class="wish-text">
-          Hy vọng tất cả <strong>ước mơ</strong> và <strong>mục tiêu</strong> của bạn<br>
-          sẽ trở thành hiện thực trong năm nay!
+          Hy vọng tất cả <strong>ước mơ</strong> và <strong>mục tiêu</strong> của Mia<br>
+          đều sớm trở thành hiện thực!
         </div>
       </div>
 
@@ -2032,18 +2550,47 @@
       </div>
 
       <div class="wish-card">
+        <div class="wish-icon">🥛</div>
+        <div class="wish-text">
+          Nhớ uống nhiều sữa mỗi ngày để có <strong>hàm răng trắng đẹp</strong>!<br>
+          Chăm sóc bản thân là yêu thương bản thân nhé! ✨
+        </div>
+      </div>
+
+      <div class="wish-card">
+        <div class="wish-icon">🌈</div>
+        <div class="wish-text">
+          Luôn có <strong>người chở che</strong> và yêu thương bên cạnh,<br>
+          để Mia không bao giờ phải đối mặt khó khăn một mình! 💕
+        </div>
+      </div>
+
+      <div class="wish-card">
         <div class="wish-icon">🚀</div>
         <div class="wish-text">
-          Chúc bạn thành công rực rỡ trong <strong>sự nghiệp</strong>,<br>
-          và luôn tiến bước vững chắc trên con đường của mình!
+          Con đường phía trước của Mia sẽ tràn đầy <strong>cơ hội</strong> và <strong>may mắn</strong>,<br>
+          tiến bước tự tin và vững chắc nhé!
+        </div>
+      </div>
+
+      <div class="wish-card">
+        <div class="wish-icon">🌸</div>
+        <div class="wish-text">
+          Nụ cười <strong>rạng rỡ</strong> của Mia sẽ luôn là nguồn năng lượng tích cực,<br>
+          lan tỏa niềm vui đến mọi người xung quanh!
         </div>
       </div>
 
       <div class="final-message">
-        🎂✨ HAPPY BIRTHDAY ✨🎂<br>
+        🎂✨ HAPPY BIRTHDAY MIA ✨🎂<br>
         <span style="font-size: 0.6em; margin-top: 10px; display: block;">
-          Chúc bạn có một ngày sinh nhật thật tuyệt vời! 🎉
+          Chúc Mia có một ngày sinh nhật đầy bất ngờ và hạnh phúc! 🎉💝
         </span>
+        <div class="ed-signature">
+          <span style="font-size: 0.5em; margin-top: 20px; display: block; font-style: italic; color: #A0522D;">
+            ✨ Gửi từ Ed với tất cả tình cảm ✨
+          </span>
+        </div>
       </div>
 
       <!-- Câu hỏi nhận quà - Đặt ở cuối lời chúc -->
@@ -2063,10 +2610,8 @@
 
     <!-- Lỗi 404 (đùa) -->
     <div class="error-404" id="error404">
-      <!-- GIF mèo -->
-      <div class="error-gif">
-        <img src="cat-out.gif" alt="Cat Error" onerror="this.style.display='none'">
-      </div>
+      <!-- Lottie animation mèo -->
+      <div class="error-gif" id="catOutAnimation"></div>
       <div class="error-code">404</div>
       <div class="error-message">Oops! Quà không tìm thấy! 🤭</div>
       <div class="error-emoji">😅</div>
@@ -2099,8 +2644,8 @@
       <div class="success-icon">🎊</div>
       <div class="success-title">Đã gửi thành công! ✨</div>
       <div class="success-text">
-        Điều ước của bạn đã được gửi đi!<br>
-        Chúc bạn sớm đạt được điều mình mong muốn! 🌟
+        Điều ước của Mia đã được gửi đi!<br>
+        Chúc Mia sớm đạt được điều mình mong muốn! 🌟
       </div>
     </div>
   </div>
@@ -2147,30 +2692,6 @@
     const successContainer = document.getElementById('successContainer');
     const loadingScreen = document.getElementById('loadingScreen');
 
-    // Tạo Matrix rain effect
-    function createMatrixRain() {
-      const matrixRain = document.getElementById('matrixRain');
-      const chars = '01アイウエオカキクケコサシスセソタチツテト';
-
-      for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-          const column = document.createElement('div');
-          column.className = 'matrix-column';
-          column.style.left = Math.random() * 100 + '%';
-          column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-          column.style.animationDelay = Math.random() * 2 + 's';
-
-          let text = '';
-          for (let j = 0; j < 20; j++) {
-            text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
-          }
-          column.innerHTML = text;
-
-          matrixRain.appendChild(column);
-        }, i * 50);
-      }
-    }
-
     // Gõ code từng dòng
     function typeCode() {
       if (currentLine < codeLines.length) {
@@ -2182,7 +2703,7 @@
         codeContent.insertBefore(lineDiv, codeCursor);
         currentLine++;
 
-        setTimeout(typeCode, 100); // Tốc độ gõ: 100ms/dòng
+        setTimeout(typeCode, 80); // Tốc độ gõ nhanh hơn: 80ms/dòng (tối ưu từ 100ms)
       } else {
         // Hoàn thành gõ code, bắt đầu loading
         setTimeout(() => {
@@ -2198,49 +2719,44 @@
       }
     }
 
-    // Bắt đầu loading bar
+    // Bắt đầu loading bar - Tối ưu hóa
     function startLoading() {
       let percent = 0;
       const interval = setInterval(() => {
-        percent += 1;
+        percent += 2; // Tăng nhanh hơn: +2 thay vì +1
         loadingPercent.textContent = percent + '%';
 
         if (percent >= 100) {
           clearInterval(interval);
-          setTimeout(showSuccess, 300);
+          setTimeout(showSuccess, 200); // Giảm từ 300ms xuống 200ms
         }
-      }, 30); // 3 giây để load 100%
+      }, 25); // 1.25 giây để load 100% (tối ưu từ 3 giây)
     }
 
-    // Hiển thị thành công
+    // Chuyển sang màn 1 ngay lập tức
     function showSuccess() {
       loadingBarContainer.style.animation = 'fadeOut 0.5s ease-out forwards';
 
       setTimeout(() => {
         loadingBarContainer.style.display = 'none';
-        successContainer.style.display = 'block';
 
-        // Chuyển sang màn 1 sau 1.5 giây
+        // Chuyển thẳng sang màn 1 - BỎ màn "LOAD THÀNH CÔNG"
+        const greetingCard = document.getElementById('greetingCard');
+        loadingScreen.classList.add('hidden');
+
+        if (greetingCard) {
+          greetingCard.style.display = 'flex';
+        }
+
+        // Xóa loading screen sau khi animation xong
         setTimeout(() => {
-          const greetingCard = document.getElementById('greetingCard');
-
-          loadingScreen.classList.add('hidden');
-
-          if (greetingCard) {
-            greetingCard.style.display = 'flex';
-          }
-
-          // Xóa loading screen sau khi animation xong
-          setTimeout(() => {
-            loadingScreen.style.display = 'none';
-          }, 1000);
-        }, 1500);
+          loadingScreen.style.display = 'none';
+        }, 1000);
       }, 500);
     }
 
-    // Bắt đầu loading screen
-    createMatrixRain();
-    setTimeout(typeCode, 500);
+    // Bắt đầu loading screen - Tối ưu hóa
+    setTimeout(typeCode, 300); // Bắt đầu nhanh hơn: 300ms (tối ưu từ 500ms)
 
     // Ẩn màn 1 ban đầu
     window.addEventListener('DOMContentLoaded', () => {
@@ -2373,6 +2889,33 @@
         console.error('❌ Error loading Lottie animation:', error);
         // Fallback: Hiển thị emoji nếu load lỗi
         container.innerHTML = '<div style="font-size: 150px;">😺</div>';
+      }
+    }
+
+    // Load Lottie animation cho mèo 404
+    function loadCatOutAnimation() {
+      const container = document.getElementById('catOutAnimation');
+
+      // Xóa animation cũ nếu có
+      if (container._lottie) {
+        container._lottie.destroy();
+      }
+
+      // Load animation mới
+      try {
+        container._lottie = lottie.loadAnimation({
+          container: container,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'cat_out.json' // File JSON cho mèo 404
+        });
+
+        console.log('✅ Cat out animation loaded successfully!');
+      } catch (error) {
+        console.error('❌ Error loading cat out animation:', error);
+        // Fallback: Hiển thị emoji nếu load lỗi
+        container.innerHTML = '<div style="font-size: 150px;">🐱</div>';
       }
     }
 
@@ -2643,6 +3186,9 @@
         // Hiển thị lỗi 404
         error404.style.display = 'block';
 
+        // Load Lottie animation cho mèo 404
+        loadCatOutAnimation();
+
         // Tạo pháo hoa ngẫu nhiên để tăng hiệu ứng
         for (let i = 0; i < 5; i++) {
           setTimeout(() => randomFirework(), i * 300);
@@ -2676,6 +3222,9 @@
         wishesScreen.style.display = 'none';
         giftScreen.style.display = 'flex';
         error404.style.display = 'block';
+
+        // Load Lottie animation cho mèo 404
+        loadCatOutAnimation();
 
         setTimeout(() => {
           error404.style.animation = 'fadeOut 0.5s ease-out forwards';
@@ -2811,129 +3360,152 @@
       }
     });
 
-    // Tạo hiệu ứng pháo giấy rơi nhẹ nhàng
-    function createConfetti() {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDelay = Math.random() * 2 + 's';
-      confetti.style.animationDuration = (Math.random() * 2 + 4) + 's';
-      document.body.appendChild(confetti);
+    // =============================================
+    // HỆ THỐNG ẢNH NGẪU NHIÊN (GIF, PNG, JPG, WEBP, LOTTIE)
+    // =============================================
 
-      setTimeout(() => confetti.remove(), 7000);
+    // Danh sách file ảnh/animation trong thư mục images/
+    // Hỗ trợ: GIF, PNG, JPG, JPEG, WEBP, JSON (Lottie)
+    const imageFiles = [
+      { type: 'gif', src: 'images/cat_in_a_rocket.gif' },
+      { type: 'gif', src: 'images/live-chatbot.gif' },
+      { type: 'lottie', src: 'images/cat_show.json' },
+      // { type: 'png', src: 'images/balloon.png' },
+      // { type: 'jpg', src: 'images/cake.jpg' },
+      // { type: 'lottie', src: 'images/star.json' },
+      // Thêm nhiều file ảnh (GIF, PNG, JPG, WEBP, Lottie JSON) tại đây...
+    ];
+
+    // Tạo ảnh/animation bay ngẫu nhiên
+    function createRandomImage() {
+      const randomItem = imageFiles[Math.floor(Math.random() * imageFiles.length)];
+      const size = 40 + Math.random() * 40;
+
+      // Random vị trí xuất hiện: 0=trên, 1=trái, 2=phải
+      const entryPosition = Math.floor(Math.random() * 3);
+      let startX, startY, endX, endY;
+
+      switch(entryPosition) {
+        case 0: // Từ trên xuống
+          startX = Math.random() * 100;
+          startY = -150;
+          endX = startX + (Math.random() - 0.5) * 40;
+          endY = 110;
+          break;
+        case 1: // Từ trái sang phải
+          startX = -150;
+          startY = Math.random() * 80 + 10;
+          endX = 110;
+          endY = startY + (Math.random() - 0.5) * 30;
+          break;
+        case 2: // Từ phải sang trái
+          startX = 110;
+          startY = Math.random() * 80 + 10;
+          endX = -20;
+          endY = startY + (Math.random() - 0.5) * 30;
+          break;
+      }
+
+      let container;
+
+      if (randomItem.type === 'lottie') {
+        // Tạo Lottie animation
+        container = document.createElement('div');
+        container.className = 'random-image';
+        container.style.cssText = `
+          position: fixed;
+          width: ${size}px;
+          height: ${size}px;
+          left: ${startX}${entryPosition === 0 ? 'vw' : 'px'};
+          top: ${startY}${entryPosition === 0 ? 'px' : 'vh'};
+          z-index: ${Math.floor(Math.random() * 50) + 10};
+          pointer-events: none;
+          opacity: ${0.7 + Math.random() * 0.3};
+        `;
+
+        document.body.appendChild(container);
+
+        // Load Lottie animation
+        try {
+          lottie.loadAnimation({
+            container: container,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: randomItem.src
+          });
+        } catch (error) {
+          console.error('Error loading Lottie:', error);
+          container.remove();
+          return;
+        }
+      } else {
+        // Tạo ảnh thường (GIF, PNG, JPG, WEBP)
+        container = document.createElement('img');
+        container.src = randomItem.src;
+        container.className = 'random-image';
+        container.style.cssText = `
+          position: fixed;
+          width: ${size}px;
+          left: ${startX}${entryPosition === 0 ? 'vw' : 'px'};
+          top: ${startY}${entryPosition === 0 ? 'px' : 'vh'};
+          z-index: ${Math.floor(Math.random() * 50) + 10};
+          pointer-events: none;
+          border-radius: 5px;
+          opacity: ${0.7 + Math.random() * 0.3};
+        `;
+
+        document.body.appendChild(container);
+      }
+
+      // Animation di chuyển theo hướng
+      const duration = 8000 + Math.random() * 4000;
+      const rotation = (Math.random() - 0.5) * 720; // Random xoay cả 2 hướng
+      const midRotation = rotation * 0.4;
+
+      // Tính toán vị trí giữa và cuối
+      const midX = startX + (endX - startX) * 0.5;
+      const midY = startY + (endY - startY) * 0.5;
+
+      // Random thêm độ lệch để tạo đường cong
+      const curveOffset = (Math.random() - 0.5) * 100;
+
+      container.animate([
+        {
+          left: `${startX}${entryPosition === 0 ? 'vw' : 'px'}`,
+          top: `${startY}${entryPosition === 0 ? 'px' : 'vh'}`,
+          transform: `rotate(0deg) scale(0.5)`,
+          opacity: 0
+        },
+        {
+          left: `${midX + curveOffset}${entryPosition === 0 ? 'vw' : entryPosition === 1 ? 'vw' : 'vw'}`,
+          top: `${midY}${entryPosition === 0 ? 'vh' : 'vh'}`,
+          transform: `rotate(${midRotation}deg) scale(1)`,
+          opacity: container.style.opacity
+        },
+        {
+          left: `${endX}${entryPosition === 0 ? 'vw' : entryPosition === 1 ? 'vw' : 'vw'}`,
+          top: `${endY}${entryPosition === 0 ? 'vh' : 'vh'}`,
+          transform: `rotate(${rotation}deg) scale(0.8)`,
+          opacity: 0
+        }
+      ], {
+        duration: duration,
+        easing: 'ease-in-out'
+      }).onfinish = () => container.remove();
     }
 
-    // Tạo pháo giấy liên tục
-    const confettiInterval = setInterval(createConfetti, 200);
-    for (let i = 0; i < 40; i++) {
-      setTimeout(createConfetti, i * 50);
+    // Tạo ảnh liên tục
+    const imageInterval = setInterval(createRandomImage, 800);
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createRandomImage, i * 100);
     }
 
-    // Tạo sao lấp lánh
-    function createStar() {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.textContent = '⭐';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.animationDelay = Math.random() * 2 + 's';
-      star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-      document.body.appendChild(star);
-
-      setTimeout(() => star.remove(), 5000);
-    }
-
-    setInterval(createStar, 800);
-    for (let i = 0; i < 10; i++) {
-      setTimeout(createStar, i * 100);
-    }
-
-    // Tạo con mèo đi qua màn hình
-    function createCat() {
-      const cat = document.createElement('div');
-      cat.className = 'cat';
-      cat.textContent = '🐱';
-      cat.style.bottom = Math.random() * 20 + 10 + '%';
-      cat.style.animationDuration = (Math.random() * 3 + 6) + 's';
-      document.body.appendChild(cat);
-
-      setTimeout(() => cat.remove(), 10000);
-    }
-
-    setInterval(createCat, 8000);
-    setTimeout(createCat, 2000);
-
-    // Tạo con gấu nhảy múa
-    function createBear() {
-      const bear = document.createElement('div');
-      bear.className = 'bear';
-      bear.textContent = '🐻';
-      bear.style.animationDuration = (Math.random() * 2 + 5) + 's';
-      bear.style.animationDelay = Math.random() * 2 + 's';
-      document.body.appendChild(bear);
-
-      setTimeout(() => bear.remove(), 8000);
-    }
-
-    setInterval(createBear, 7000);
-    setTimeout(createBear, 1000);
-
-    // Tạo bong bóng
-    function createBubble() {
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble';
-      const size = Math.random() * 40 + 30;
-      bubble.style.width = size + 'px';
-      bubble.style.height = size + 'px';
-      bubble.style.left = Math.random() * 100 + 'vw';
-      bubble.style.animationDuration = (Math.random() * 3 + 5) + 's';
-      bubble.style.animationDelay = Math.random() * 2 + 's';
-      document.body.appendChild(bubble);
-
-      setTimeout(() => bubble.remove(), 10000);
-    }
-
-    setInterval(createBubble, 1000);
-    for (let i = 0; i < 5; i++) {
-      setTimeout(createBubble, i * 200);
-    }
-
-    // Tạo emoji bay
-    function createFlyingEmoji() {
-      const emojis = ['🎉', '🎊', '🎈', '🎁', '🎂', '🍰', '🌟', '✨', '💖', '🦄', '🌈'];
-      const emoji = document.createElement('div');
-      emoji.className = 'flying-emoji';
-      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.top = Math.random() * 80 + 10 + '%';
-      emoji.style.animationDuration = (Math.random() * 4 + 6) + 's';
-      emoji.style.animationDelay = Math.random() * 3 + 's';
-      document.body.appendChild(emoji);
-
-      setTimeout(() => emoji.remove(), 12000);
-    }
-
-    setInterval(createFlyingEmoji, 3000);
-    setTimeout(createFlyingEmoji, 500);
-
-    // Tạo hiệu ứng bóng bay bay lên
-    function createBalloon() {
-      const balloon = document.createElement('div');
-      balloon.className = 'balloon';
-      balloon.style.left = Math.random() * 90 + 5 + 'vw';
-      const colorIndex = Math.floor(Math.random() * colors.length);
-      balloon.style.background = `linear-gradient(135deg, ${colors[colorIndex]}, ${colors[(colorIndex + 1) % colors.length]})`;
-      balloon.style.animationDelay = Math.random() * 3 + 's';
-      balloon.style.animationDuration = (Math.random() * 4 + 8) + 's';
-      document.body.appendChild(balloon);
-
-      setTimeout(() => balloon.remove(), 15000);
-    }
-
-    // Tạo bóng bay mới mỗi 2 giây
-    setInterval(createBalloon, 2000);
-    for (let i = 0; i < 3; i++) {
-      setTimeout(createBalloon, i * 500);
+    // Tạo ảnh bay ở các màn hình đặc biệt
+    function createSpecialImage(count = 5) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(createRandomImage, i * 200);
+      }
     }
 
     // Tạo hiệu ứng pháo hoa mềm mại
