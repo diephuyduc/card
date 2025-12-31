@@ -456,6 +456,76 @@
       }
     }
 
+    /* Màn 0.1: Go Screen */
+    .go-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .go-screen.hidden {
+      animation: screenFadeOut 1s ease-out forwards;
+    }
+
+    .go-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .go-emoji {
+      font-size: 120px;
+      animation: gentleBounce 3s ease-in-out infinite;
+    }
+
+    .go-title {
+      font-size: 3em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 25%, #ffd93d 50%, #6bcf7f 75%, #4d96ff 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s ease infinite;
+      color: white;
+    }
+
+    .go-btn {
+      padding: 20px 50px;
+      font-size: 1.5em;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 60px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .go-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
+    .go-btn:active {
+      transform: translateY(-2px) scale(1.05);
+    }
+
     /* Màn hình thổi nến */
     .candle-screen {
       display: none;
@@ -2431,6 +2501,15 @@
     </div>
   </div>
 
+  <!-- Màn 0.1: Go Screen -->
+  <div class="go-screen" id="goScreen">
+    <div class="go-container">
+      <div class="go-emoji">🎉</div>
+      <div class="go-title">Sẵn sàng chưa?</div>
+      <button class="go-btn" id="goBtn">GO! 🚀</button>
+    </div>
+  </div>
+
   <!-- Background Music -->
   <!--
     HƯỚNG DẪN SỬ DỤNG NHẠC LOCAL:
@@ -2733,19 +2812,17 @@
       }, 25); // 1.25 giây để load 100% (tối ưu từ 3 giây)
     }
 
-    // Chuyển sang màn 1 ngay lập tức
+    // Chuyển sang màn Go
     function showSuccess() {
       loadingBarContainer.style.animation = 'fadeOut 0.5s ease-out forwards';
 
       setTimeout(() => {
         loadingBarContainer.style.display = 'none';
 
-        // Chuyển thẳng sang màn 1 - BỎ màn "LOAD THÀNH CÔNG"
-        const greetingCard = document.getElementById('greetingCard');
-        loadingScreen.classList.add('hidden');
-
-        if (greetingCard) {
-          greetingCard.style.display = 'flex';
+        // Hiển thị màn Go
+        const goScreen = document.getElementById('goScreen');
+        if (goScreen) {
+          goScreen.style.display = 'flex';
         }
 
         // Xóa loading screen sau khi animation xong
@@ -2830,6 +2907,34 @@
           musicToggle.style.animation = 'musicPulse 2s ease-in-out infinite';
         });
       }
+    });
+
+    // =============================================
+    // XỬ LÝ NÚT GO
+    // =============================================
+    const goBtn = document.getElementById('goBtn');
+    const goScreenElement = document.getElementById('goScreen');
+
+    goBtn.addEventListener('click', () => {
+      // Phát nhạc
+      bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        musicToggle.textContent = '🔊';
+        musicToggle.style.animation = 'musicPulse 2s ease-in-out infinite';
+      }).catch(err => {
+        console.log('Cannot play music:', err);
+      });
+
+      // Ẩn màn Go với animation
+      goScreenElement.classList.add('hidden');
+
+      setTimeout(() => {
+        goScreenElement.style.display = 'none';
+        // Hiển thị màn 1 (greeting card)
+        if (greetingCard) {
+          greetingCard.style.display = 'flex';
+        }
+      }, 1000);
     });
 
     // Xử lý chuyển màn hình
